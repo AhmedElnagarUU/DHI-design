@@ -9,14 +9,14 @@ import { projects } from "@/lib/data/projects";
 export default function ProjectsPage() {
   const [selectedCategory, setSelectedCategory] = useState("All");
 
-  // Use reduce to manually create a unique array of categories
-  const categories = ["All", ...projects.reduce((acc, project) => {
+  // Explicitly define the type of accumulator as string[]
+  const categories = ["All", ...projects.reduce<string[]>((acc, project) => {
     if (!acc.includes(project.category)) {
       acc.push(project.category);
     }
     return acc;
   }, [])];
-  
+
   const filteredProjects = selectedCategory === "All"
     ? projects
     : projects.filter(project => project.category === selectedCategory);
