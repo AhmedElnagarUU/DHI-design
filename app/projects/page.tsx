@@ -9,7 +9,8 @@ import { projects } from "@/lib/data/projects";
 export default function ProjectsPage() {
   const [selectedCategory, setSelectedCategory] = useState("All");
 
-  const categories = ["All", ...new Set(projects.map(project => project.category))];
+  // Use Array.from to avoid the iteration issue
+  const categories = ["All", ...Array.from(new Set(projects.map(project => project.category)))];
   
   const filteredProjects = selectedCategory === "All"
     ? projects
